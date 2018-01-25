@@ -8,12 +8,20 @@ public class Room {
 
     Room north, south, east, west;
 
+    private int posX, posY, width, height;
+
     public Room(int dx, int dy, Color color) {
         System.out.println("x:" + dx + " y:" + dy + " " + color);
         north = null;
         south = null;
         east = null;
         west = null;
+
+        this.width = dx;
+        this.height = dy;
+        this.posX = -1;
+        this.posY = -1;
+
     }
 
     public void connectNorthTo(Room r) {
@@ -28,4 +36,42 @@ public class Room {
     public void connectWestTo(Room r) {
         west = r;
     }
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
+    public void setPos(int posX, int posY) {
+        this.posX = posX;
+        this.posY = posY;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
 }

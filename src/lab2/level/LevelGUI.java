@@ -1,10 +1,12 @@
 package lab2.level;
 
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -17,11 +19,13 @@ public class LevelGUI implements Observer {
     private Level lv;
     private Display d;
 
+    private JFrame frame;
+
     public LevelGUI(Level level, String name) {
 
         this.lv = level;
 
-        JFrame frame = new JFrame(name);
+        this.frame = new JFrame(name);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // TODO: You should change 200 to a value
@@ -30,8 +34,12 @@ public class LevelGUI implements Observer {
 
         frame.getContentPane().add(d);
         frame.pack();
-        frame.setLocation(0,0);
+        frame.setLocationRelativeTo(null);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
+    }
+    public void deconstruct(){
+        frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
     }
 
 
@@ -47,7 +55,7 @@ public class LevelGUI implements Observer {
 
             addKeyListener(new Listener());
 
-            setBackground(Color.GREEN);
+            setBackground(Color.DARK_GRAY);
             setPreferredSize(new Dimension(x+20,y+20));
             setFocusable(true);
         }
@@ -73,6 +81,10 @@ public class LevelGUI implements Observer {
             }
         }
 
+    }
+
+    public Level getLv(){
+        return lv;
     }
 
 }
