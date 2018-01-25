@@ -6,6 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         new Driver().run();
+        System.out.println("Hej");
     }
 
 }
