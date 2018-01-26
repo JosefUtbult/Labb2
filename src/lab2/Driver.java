@@ -29,8 +29,8 @@ public class Driver {
         */
         Level level = new Level();
 
-        System.out.println(level.place(r1, 0, 0) ? "Added room" : "Could not add room " + r1.toString());
-        System.out.println(level.place(r2, 200, 130) ? "Added room" : "Could not add room " + r2.toString());
+        System.out.println(level.place(r1, 400, 400) ? "Added room " + r1.toString() : "Could not add room " + r1.toString());
+        System.out.println(level.place(r2, 200, 130) ? "Added room " + r2.toString() : "Could not add room " + r2.toString());
 
         levelGUI = new LevelGUI(level, "Killing floor");
         /*

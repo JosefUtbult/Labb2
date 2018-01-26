@@ -28,7 +28,7 @@ public class Room {
         this.height = dy;
         this.posX = -1;
         this.posY = -1;
-        this.color = color;
+        this.color = new Color(color.getRGB());
 
     }
 
