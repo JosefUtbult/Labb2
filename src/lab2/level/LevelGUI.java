@@ -51,7 +51,7 @@ public class LevelGUI implements Observer {
             this.fp = fp;
             addKeyListener(new Listener());
 
-            setBackground(Color.DARK_GRAY);
+            setBackground(Color.darkGray);
             setPreferredSize(new Dimension(x+20,y+20));
             setFocusable(true);
         }
@@ -68,6 +68,9 @@ public class LevelGUI implements Observer {
                 paintRoom(g, room);
             }
 
+            //super.paintComponent(g);
+
+
         }
 
         /**
@@ -77,13 +80,13 @@ public class LevelGUI implements Observer {
          * @param room Room object
          */
         private void paintRoom(Graphics g, Room room) {
+            g.setColor(room.getColorObject());
             g.fillRect(
                     (int) room.getRectangleObject().getX(),
                     (int) room.getRectangleObject().getY(),
                     (int) room.getRectangleObject().getWidth(),
                     (int) room.getRectangleObject().getHeight()
             );
-            g.setColor(room.getColorObject());
         }
 
 
