@@ -38,12 +38,6 @@ public class LevelGUI implements Observer {
         frame.setVisible(true);
     }
 
-
-    public Display getDisplayObject() {
-        return d;
-    }
-
-
     public void update(Observable arg0, Object arg1) {
 
     }
@@ -62,8 +56,12 @@ public class LevelGUI implements Observer {
             setFocusable(true);
         }
 
+        /**
+         * Overrides paintComponent from JComponent to draw rooms.
+         *
+         * @param g Java Graphics object.
+         */
         public void paintComponent(Graphics g) {
-
             super.paintComponent(g);
 
             for (Room room : fp.getRooms()) {
@@ -72,6 +70,12 @@ public class LevelGUI implements Observer {
 
         }
 
+        /**
+         * Draws a rectangular room on the display.
+         *
+         * @param g Java Graphics object.
+         * @param room Room object
+         */
         private void paintRoom(Graphics g, Room room) {
             g.fillRect(
                     (int) room.getRectangleObject().getX(),
