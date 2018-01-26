@@ -19,13 +19,12 @@ public class LevelGUI implements Observer {
     private Level lv;
     private Display d;
 
-    private JFrame frame;
 
     public LevelGUI(Level level, String name) {
 
         this.lv = level;
 
-        this.frame = new JFrame(name);
+        JFrame frame = new JFrame(name);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // TODO: You should change 200 to a value
@@ -38,8 +37,10 @@ public class LevelGUI implements Observer {
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
     }
-    public void deconstruct(){
-        frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+
+
+    public Display getDisplayObject() {
+        return d;
     }
 
 
@@ -49,10 +50,11 @@ public class LevelGUI implements Observer {
 
     private class Display extends JPanel {
 
+        private Level fp;
 
         public Display(Level fp, int x, int y) {
 
-
+            this.fp = fp;
             addKeyListener(new Listener());
 
             setBackground(Color.DARK_GRAY);
@@ -63,8 +65,18 @@ public class LevelGUI implements Observer {
 
 
         public void paintComponent(Graphics g) {
+
             super.paintComponent(g);
 
+            for (Room room : fp.getRooms()) {
+                paintRoom(g, room);
+            }
+
+        }
+
+        private void paintRoom(Graphics g, Room room) {
+            g.create(room.getPosX(), room.getPosY(), room.getWidth(), room.getHeight());
+            g.setColor(room.getColorObject());
         }
 
 

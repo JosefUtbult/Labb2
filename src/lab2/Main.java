@@ -12,11 +12,18 @@ public class Main {
 
         Scanner s = new Scanner(System.in);
         if (s.next() != "") {
+
         }
 
         return;
     }
 
+    private static boolean userTerminates(){
+        Scanner scanner = new Scanner(System.in);
+
+        //If you want that user terminates it with 'c' char
+        return scanner.nextLine().equals("c");
+    }
 
 
 }

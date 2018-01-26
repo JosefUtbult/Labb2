@@ -8,15 +8,15 @@ import java.awt.*;
 
 public class Driver {
 
-    public static LevelGUI levelGUI;
+    private static LevelGUI levelGUI;
 
     public static String zero;
 
     public void run() {
         // System.out.println("This is a print-out from the driver.");
 
-        Room r1 = new Room(10, 12, Color.blue);
-        Room r2 = new Room(40, 10, Color.yellow);
+        Room r1 = new Room(100, 120, Color.blue);
+        Room r2 = new Room(400, 100, Color.yellow);
 
         //Room r3 = new Room(20, 15, Color.red);
 
@@ -31,7 +31,8 @@ public class Driver {
         levelGUI = new LevelGUI(new Level(), "Killing floor");
 
         System.out.println(levelGUI.getLv().place(r1, 0, 0) ? "Added room" : "Could not add");
-        System.out.println(levelGUI.getLv().place(r2, 11, 11) ? "Added room" : "Could not add");
+        System.out.println(levelGUI.getLv().place(r2, 200, 130) ? "Added room" : "Could not add");
+
 
         /*zero = String.format("Zero is: %d", getZero());
 
@@ -47,6 +48,10 @@ public class Driver {
      */
     private static int getZero() {
         return (0 == 0) ? 0 : 1;        //todo: Make similar functions for 1, 2, 4 and 8
+    }
+
+    public static LevelGUI getLevelGUI(){
+        return levelGUI;
     }
 
 }

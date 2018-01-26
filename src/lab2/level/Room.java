@@ -6,12 +6,15 @@ import java.sql.SQLOutput;
 
 public class Room {
 
-    Room north, south, east, west;
+    private Color color;
+    private Room north, south, east, west;
 
     private int posX, posY, width, height;
 
+
     public Room(int dx, int dy, Color color) {
         System.out.println("x:" + dx + " y:" + dy + " " + color);
+
         north = null;
         south = null;
         east = null;
@@ -21,6 +24,7 @@ public class Room {
         this.height = dy;
         this.posX = -1;
         this.posY = -1;
+        this.color = color;
 
     }
 
@@ -36,6 +40,23 @@ public class Room {
     public void connectWestTo(Room r) {
         west = r;
     }
+
+    public Room getNorth() {
+        return north;
+    }
+
+    public Room getSouth() {
+        return south;
+    }
+
+    public Room getEast() {
+        return east;
+    }
+
+    public Room getWest() {
+        return west;
+    }
+
 
     public int getPosX() {
         return posX;
@@ -72,6 +93,10 @@ public class Room {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public Color getColorObject() {
+        return this.color;
     }
 
 }
