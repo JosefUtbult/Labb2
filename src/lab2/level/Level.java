@@ -2,11 +2,13 @@ package lab2.level;
 
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Observer;
 
 
 public class Level extends Observable {
 
     private ArrayList<Room> rooms = new ArrayList<>();
+    private ArrayList<Observable> observers = new ArrayList<>();
 
     public boolean place(Room r, int x, int y)  {
 
@@ -51,5 +53,21 @@ public class Level extends Observable {
     public ArrayList<Room> getRooms() {
         return rooms;
     }
+
+    public void addObserver(Observable observer){
+        observers.add(observer);
+    }
+
+    public void notifyObserver(){
+        for (Observable currentObserver : observers) {
+            currentObserver.notify();
+        }
+    }
+
+    public void setChanged(){
+
+    }
+
+
 
 }
