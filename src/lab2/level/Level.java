@@ -10,6 +10,8 @@ public class Level extends Observable {
     private ArrayList<Room> rooms = new ArrayList<>();
     private ArrayList<Observable> observers = new ArrayList<>();
 
+    private Room currentRoom;
+
     public boolean place(Room r, int x, int y)  {
 
         r.setPos(x, y);
@@ -68,6 +70,45 @@ public class Level extends Observable {
 
     }
 
+
+    public boolean move(char direction){
+
+        notifyObserver();
+
+        switch (direction) {
+            case 'n':
+                if(currentRoom.getNorth() != null){
+                    currentRoom = currentRoom.getNorth();
+                    return true;
+                }
+            break;
+
+            case 's':
+                if(currentRoom.getSouth() != null){
+                    currentRoom = currentRoom.getSouth();
+                    return true;
+                }
+            break;
+
+            case 'w':
+                if(currentRoom.getWest() != null){
+                    currentRoom = currentRoom.getWest();
+                    return true;
+                }
+            break;
+
+            case 'e':
+                if(currentRoom.getEast() != null){
+                    currentRoom = currentRoom.getEast();
+                    return true;
+                }
+            break;
+            default:
+            break;
+        }
+
+        return false;
+    }
 
 
 }
