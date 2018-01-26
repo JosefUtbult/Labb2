@@ -12,7 +12,13 @@ public class Room {
 
     private int posX, posY, width, height;
 
-
+    /**
+     * Constructor.
+     *
+     * @param dx int Width of the Room object.
+     * @param dy int Height of the Room object.
+     * @param color Color Color of the Room object.
+     */
     public Room(int dx, int dy, Color color) {
         System.out.println(toString());
 
@@ -32,6 +38,11 @@ public class Room {
 
     }
 
+    /**
+     * Method connects this Room to another Room.
+     *
+     * @param r Room Other Room for this Room to be connected to.
+     */
     public void connectNorthTo(Room r) {
         north = r;
     }
@@ -45,6 +56,11 @@ public class Room {
         west = r;
     }
 
+    /**
+     * Getters for the Room objects adjacent to the current Room object.
+     *
+     * @return Room Returns an adjacent Room object
+     */
     public Room getNorth() {
         return north;
     }
@@ -78,9 +94,14 @@ public class Room {
         this.posY = posY;
     }
 
+    /**
+     * Sets the position of this Room.
+     *
+     * @param posX int x-position.
+     * @param posY int y-position.
+     */
     public void setPos(int posX, int posY) {
         rectangle.setLocation(posX, posY);
-
         /*
         this.posX = posX;
         this.posY = posY;

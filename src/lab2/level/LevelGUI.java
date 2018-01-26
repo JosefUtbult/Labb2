@@ -13,13 +13,24 @@ import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
+/**
+ * Class that implements a GUI for a simple 2D-game level with rooms.
+ *
+ * @author Håkan Jonsson (Course instructor)
+ * @author Josef Utbult
+ * @author Oscar Brink
+ */
 public class LevelGUI implements Observer {
 
     private Level lv;
     private Display d;
 
-
+    /**
+     * Constructor.
+     *
+     * @param level Level Level that will be presented on the GUI.
+     * @param name String Name of the level and window.
+     */
     public LevelGUI(Level level, String name) {
 
         this.lv = level;
@@ -46,6 +57,13 @@ public class LevelGUI implements Observer {
 
         private Level fp;
 
+        /**
+         * Constructor.
+         *
+         * @param fp Level Level that will be drawn.
+         * @param x int Size of the level-x.
+         * @param y int Size of the level-y.
+         */
         public Display(Level fp, int x, int y) {
 
             this.fp = fp;
@@ -59,7 +77,7 @@ public class LevelGUI implements Observer {
         /**
          * Overrides paintComponent from JComponent to draw rooms.
          *
-         * @param g Java Graphics object.
+         * @param g Graphics Java Graphics object.
          */
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
@@ -76,8 +94,8 @@ public class LevelGUI implements Observer {
         /**
          * Draws a rectangular room on the display.
          *
-         * @param g Java Graphics object.
-         * @param room Room object
+         * @param g Graphics Java Graphics object.
+         * @param room Room The Room that is to be painted.
          */
         private void paintRoom(Graphics g, Room room) {
             g.setColor(room.getColorObject());

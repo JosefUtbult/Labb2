@@ -4,7 +4,13 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-
+/**
+ * Class creates a 2D-level for use in a simple game.
+ *
+ * @author Håkan Jonsson (Course instructor)
+ * @author Josef Utbult
+ * @author Oscar Brink
+ */
 public class Level extends Observable {
 
     private ArrayList<Room> rooms = new ArrayList<>();
@@ -12,6 +18,16 @@ public class Level extends Observable {
 
     private Room currentRoom;
 
+    /**
+     * Method takes in a Room object and tries to place it at the point
+     * (x, y) in the level.
+     *
+     * @param r Room Room object to place in the level.
+     * @param x int x-position to place at.
+     * @param y int y-position to place at.
+     * @return  boolean Returns true if room doesn't intersect with any other
+     *          room, false otherwise.
+     */
     public boolean place(Room r, int x, int y)  {
 
         r.setPos(x, y);
@@ -33,11 +49,18 @@ public class Level extends Observable {
 
     }
 
+    /**
+     * Checks that one Room doesn't intersect with another.
+     *
+     * @param room1 Room room1 to check.
+     * @param room2 Room room2 to check.
+     * @return boolean Returns true if the rooms intersect, false otherwise.
+     */
     private boolean collisionDetection(Room room1, Room room2) {
         return room1.getRectangleObject().intersects(room2.getRectangleObject());
     }
 
-    private void area() {
+    private void roomArea() {
         //TODO maybe
     }
 /*
@@ -70,45 +93,49 @@ public class Level extends Observable {
 
     }
 
-
+    /**
+     * Method executes movement from one room in the level to another.
+     *
+     * @param direction char that gives the direction of the movement
+     * @return boolean true if movement succeeded, false otherwise.
+     */
     public boolean move(char direction){
 
         notifyObserver();
 
         switch (direction) {
-            case 'n':
-                if(currentRoom.getNorth() != null){
-                    currentRoom = currentRoom.getNorth();
-                    return true;
-                }
+        case 'n':
+            if(currentRoom.getNorth() != null){
+                currentRoom = currentRoom.getNorth();
+                return true;
+            }
             break;
 
-            case 's':
-                if(currentRoom.getSouth() != null){
-                    currentRoom = currentRoom.getSouth();
-                    return true;
-                }
+        case 's':
+            if(currentRoom.getSouth() != null){
+                currentRoom = currentRoom.getSouth();
+                return true;
+            }
             break;
 
-            case 'w':
-                if(currentRoom.getWest() != null){
-                    currentRoom = currentRoom.getWest();
-                    return true;
-                }
+        case 'w':
+            if(currentRoom.getWest() != null){
+                currentRoom = currentRoom.getWest();
+                return true;
+            }
             break;
 
-            case 'e':
-                if(currentRoom.getEast() != null){
-                    currentRoom = currentRoom.getEast();
-                    return true;
-                }
+        case 'e':
+            if(currentRoom.getEast() != null){
+                currentRoom = currentRoom.getEast();
+                return true;
+            }
             break;
-            default:
+        default:
             break;
         }
 
         return false;
     }
-
 
 }
