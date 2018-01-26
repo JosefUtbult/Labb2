@@ -62,8 +62,6 @@ public class LevelGUI implements Observer {
             setFocusable(true);
         }
 
-
-
         public void paintComponent(Graphics g) {
 
             super.paintComponent(g);
@@ -75,7 +73,12 @@ public class LevelGUI implements Observer {
         }
 
         private void paintRoom(Graphics g, Room room) {
-            g.create(room.getPosX(), room.getPosY(), room.getWidth(), room.getHeight());
+            g.fillRect(
+                    (int) room.getRectangleObject().getX(),
+                    (int) room.getRectangleObject().getY(),
+                    (int) room.getRectangleObject().getWidth(),
+                    (int) room.getRectangleObject().getHeight()
+            );
             g.setColor(room.getColorObject());
         }
 

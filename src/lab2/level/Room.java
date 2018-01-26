@@ -1,6 +1,6 @@
 package lab2.level;
 
-import java.awt.Color;
+import java.awt.*;
 import java.sql.SQLOutput;
 
 
@@ -8,17 +8,21 @@ public class Room {
 
     private Color color;
     private Room north, south, east, west;
+    private Rectangle rectangle;
 
     private int posX, posY, width, height;
 
 
     public Room(int dx, int dy, Color color) {
-        System.out.println("x:" + dx + " y:" + dy + " " + color);
+        System.out.println(toString());
 
         north = null;
         south = null;
         east = null;
         west = null;
+
+        rectangle = new Rectangle();
+        rectangle.setSize(dx, dy);
 
         this.width = dx;
         this.height = dy;
@@ -75,8 +79,12 @@ public class Room {
     }
 
     public void setPos(int posX, int posY) {
+        rectangle.setLocation(posX, posY);
+
+        /*
         this.posX = posX;
         this.posY = posY;
+        */
     }
 
     public int getWidth() {
@@ -97,6 +105,14 @@ public class Room {
 
     public Color getColorObject() {
         return this.color;
+    }
+
+    public Rectangle getRectangleObject() {
+        return rectangle;
+    }
+
+    public String toString() {
+        return "x:" + width + " y:" + height + " " + color;
     }
 
 }

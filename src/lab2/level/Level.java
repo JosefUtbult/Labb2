@@ -14,7 +14,7 @@ public class Level extends Observable {
 
         if(this.rooms.size() != 0){
             for (Room currentRoom : rooms) {
-                if (collisionDetecton(currentRoom, r)){
+                if (collisionDetection(r, currentRoom)){
                     return false;
                 }
             }
@@ -29,6 +29,14 @@ public class Level extends Observable {
 
     }
 
+    private boolean collisionDetection(Room room1, Room room2) {
+        return room1.getRectangleObject().intersects(room2.getRectangleObject());
+    }
+
+    private void area() {
+        //TODO maybe
+    }
+/*
     private boolean collisionDetecton(Room room1, Room room2){
         return lowerCollisionDetecton(room1, room2) || lowerCollisionDetecton(room2, room1);
     }
@@ -39,7 +47,7 @@ public class Level extends Observable {
                (room1.getPosY() < room2.getPosY() && room2.getPosY() < room1.getPosY() + room1.getHeight());
 
     }
-
+*/
     public ArrayList<Room> getRooms() {
         return rooms;
     }

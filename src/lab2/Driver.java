@@ -27,11 +27,16 @@ public class Driver {
         r2.connectNorthTo(r3);
         r3.connectSouthTo(r2);
         */
+        Level level = new Level();
 
-        levelGUI = new LevelGUI(new Level(), "Killing floor");
+        System.out.println(level.place(r1, 0, 0) ? "Added room" : "Could not add room " + r1.toString());
+        System.out.println(level.place(r2, 200, 130) ? "Added room" : "Could not add room " + r2.toString());
 
+        levelGUI = new LevelGUI(level, "Killing floor");
+        /*
         System.out.println(levelGUI.getLv().place(r1, 0, 0) ? "Added room" : "Could not add");
         System.out.println(levelGUI.getLv().place(r2, 200, 130) ? "Added room" : "Could not add");
+        */
 
 
         /*zero = String.format("Zero is: %d", getZero());
