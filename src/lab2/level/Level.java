@@ -84,6 +84,10 @@ public class Level extends Observable {
         return rooms;
     }
 
+    public void setCurrentRoom(Room room){
+        this.currentRoom = room;
+    }
+
     /**
      * "observer" are an array of observer objects, that contains every object that have to be updated
      * every time something changes, that has to be rendered.s
@@ -116,9 +120,10 @@ public class Level extends Observable {
     public boolean move(char direction){
 
         notifyObserver();
+		setChanged();
 
         switch (direction) {
-        case 'n':
+        case 'w':
             if(currentRoom.getNorth() != null){
                 currentRoom = currentRoom.getNorth();
                 return true;
@@ -132,21 +137,22 @@ public class Level extends Observable {
             }
             break;
 
-        case 'w':
+        case 'd':
             if(currentRoom.getWest() != null){
                 currentRoom = currentRoom.getWest();
                 return true;
             }
             break;
 
-        case 'e':
+        case 'a':
             if(currentRoom.getEast() != null){
                 currentRoom = currentRoom.getEast();
                 return true;
             }
             break;
         default:
-            break;
+			System.out.println("Thats not a direction.");
+			break;
         }
 
         return false;

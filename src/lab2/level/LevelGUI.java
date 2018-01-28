@@ -47,10 +47,18 @@ public class LevelGUI implements Observer {
         frame.setLocationRelativeTo(null);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
+
+        lv.addObserver(this);
     }
 
+    /**
+     * Repains the level when
+     * @param arg0
+     * @param arg1
+     */
     public void update(Observable arg0, Object arg1) {
 
+        d.repaint();
     }
 
     /**
@@ -102,6 +110,9 @@ public class LevelGUI implements Observer {
          * @param room Room The Room that is to be painted.
          */
         private void paintRoom(Graphics g, Room room) {
+
+            int wallWidth = 10;
+
             g.setColor(room.getColorObject());
             g.fillRect(
                     (int) room.getRectangleObject().getX(),
@@ -109,6 +120,38 @@ public class LevelGUI implements Observer {
                     (int) room.getRectangleObject().getWidth(),
                     (int) room.getRectangleObject().getHeight()
             );
+
+
+            g.setColor(room.getColorObject().darker().darker());
+            g.fillRect(
+                    (int) room.getRectangleObject().getX(),
+                    (int) room.getRectangleObject().getY(),
+                            (int) room.getRectangleObject().getWidth(),
+                    wallWidth
+            );
+
+            g.fillRect(
+                    (int) room.getRectangleObject().getX() + (int) room.getRectangleObject().getWidth() - wallWidth,
+                    (int) room.getRectangleObject().getY(),
+                    wallWidth,
+                    (int) room.getRectangleObject().getHeight()
+            );
+
+            g.fillRect(
+                    (int) room.getRectangleObject().getX(),
+                    (int) room.getRectangleObject().getY(),
+                    wallWidth,
+                    (int) room.getRectangleObject().getHeight()
+            );
+
+            g.fillRect(
+                    (int) room.getRectangleObject().getX(),
+                    (int) room.getRectangleObject().getY() + (int) room.getRectangleObject().getHeight() - wallWidth,
+                    (int) room.getRectangleObject().getWidth(),
+                    wallWidth
+            );
+
+
         }
 
 
@@ -116,12 +159,17 @@ public class LevelGUI implements Observer {
 
 
             public void keyPressed(KeyEvent arg0) {
+
             }
 
             public void keyReleased(KeyEvent arg0) {
             }
 
             public void keyTyped(KeyEvent event) {
+
+                //System.out.format("%s was pressed\n", event.getKeyChar());
+
+                System.out.println(lv.move(event.getKeyChar()) ? "Moved." : "Could not move.");
             }
         }
 

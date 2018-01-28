@@ -44,9 +44,12 @@ public class Driver {
         */
         levelGUI = new LevelGUI(new Level(), "Killing floor");
 
-        System.out.println(levelGUI.getLv().place(r1, 0, 0) ? "Added room" : "Could not add");
+        System.out.println(levelGUI.getLv().place(r1, 500, 500) ? "Added room" : "Could not add");
         System.out.println(levelGUI.getLv().place(r2, 200, 130) ? "Added room" : "Could not add");
+        levelGUI.getLv().setCurrentRoom(levelGUI.getLv().getRooms().get(0));
 
+        levelGUI.getLv().getRooms().get(0).connectEastTo(levelGUI.getLv().getRooms().get(1));
+        levelGUI.getLv().getRooms().get(1).connectWestTo(levelGUI.getLv().getRooms().get(0));
 
 
         zero = String.format("Zero is: %d", getZero());
