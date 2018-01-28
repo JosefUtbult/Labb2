@@ -49,14 +49,27 @@ public class Level extends Observable {
 
     }
 
+    /**
+     * Returns the array list of rooms, contained in the level.
+     * @return
+     */
     public ArrayList<Room> getRooms() {
         return rooms;
     }
 
+    /**
+     * "observer" are an array of observer objects, that contains every object that have to be updated
+     * every time something changes, that has to be rendered.s
+     * @param observer
+     */
     public void addObserver(Observable observer){
         observers.add(observer);
     }
 
+
+    /**
+     * Overides notifyObserver from Observable, going through every object in "observers" and runs notify.
+     */
     public void notifyObserver(){
         for (Observable currentObserver : observers) {
             currentObserver.notify();

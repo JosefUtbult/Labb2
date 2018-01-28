@@ -49,10 +49,10 @@ public class Driver {
 
 
 
-        /*zero = String.format("Zero is: %d", getZero());
+        zero = String.format("Zero is: %d", getZero());
 
         System.out.println(zero);
-        */
+
 
     }
 
