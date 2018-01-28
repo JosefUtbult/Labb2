@@ -120,30 +120,30 @@ public class LevelGUI implements Observer {
 
             g.setColor(room.getColorObject().darker().darker());
             g.fillRect(
-                    (int) room.getRectangleObject().getX(),
-                    (int) room.getRectangleObject().getY(),
-                            (int) room.getRectangleObject().getWidth(),
+                    (int) room.getPosX(),
+                    (int) room.getPosY(),
+                    (int) room.getWidth(),
                     wallWidth
             );
 
             g.fillRect(
-                    (int) room.getRectangleObject().getX() + (int) room.getRectangleObject().getWidth() - wallWidth,
-                    (int) room.getRectangleObject().getY(),
+                    (int) room.getPosX() + (int) room.getWidth() - wallWidth,
+                    (int) room.getPosY(),
                     wallWidth,
-                    (int) room.getRectangleObject().getHeight()
+                    (int) room.getHeight()
             );
 
             g.fillRect(
-                    (int) room.getRectangleObject().getX(),
-                    (int) room.getRectangleObject().getY(),
+                    (int) room.getPosX(),
+                    (int) room.getPosY(),
                     wallWidth,
-                    (int) room.getRectangleObject().getHeight()
+                    (int) room.getHeight()
             );
 
             g.fillRect(
-                    (int) room.getRectangleObject().getX(),
-                    (int) room.getRectangleObject().getY() + (int) room.getRectangleObject().getHeight() - wallWidth,
-                    (int) room.getRectangleObject().getWidth(),
+                    (int) room.getPosX(),
+                    (int) room.getPosY() + (int) room.getHeight() - wallWidth,
+                    (int) room.getWidth(),
                     wallWidth
             );
 
