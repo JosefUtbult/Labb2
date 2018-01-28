@@ -97,6 +97,8 @@ public class LevelGUI implements Observer {
             for (Room room : fp.getRooms()) {
                 paintRoom(g, room);
             }
+
+            paintPlayer(g);
         }
 
         /**
@@ -109,44 +111,25 @@ public class LevelGUI implements Observer {
 
             int wallWidth = 10;
 
-            g.setColor(room.getColorObject());
-            g.fillRect(
-                    room.getPosX(),
-                    room.getPosY(),
-                    room.getWidth(),
-                    room.getHeight()
-            );
-
-
             g.setColor(room.getColorObject().darker().darker());
             g.fillRect(
                     room.getPosX(),
                     room.getPosY(),
                     room.getWidth(),
-                    wallWidth
-            );
-
-            g.fillRect(
-                    room.getPosX() + room.getWidth() - wallWidth,
-                    room.getPosY(),
-                    wallWidth,
                     room.getHeight()
             );
 
+            g.setColor(room.getColorObject());
             g.fillRect(
-                    room.getPosX(),
-                    room.getPosY(),
-                    wallWidth,
-                    room.getHeight()
+                    room.getPosX() + wallWidth,
+                    room.getPosY() + wallWidth,
+                    room.getWidth() - wallWidth * 2,
+                    room.getHeight() - wallWidth * 2
             );
 
-            g.fillRect(
-                    room.getPosX(),
-                    room.getPosY() + room.getHeight() - wallWidth,
-                    room.getWidth(),
-                    wallWidth
-            );
+        }
 
+        private void paintPlayer(Graphics g){
 
         }
 
