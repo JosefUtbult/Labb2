@@ -50,6 +50,7 @@ public class Driver {
 
         levelGUI.getLv().getRooms().get(0).connectEastTo(levelGUI.getLv().getRooms().get(1));
         levelGUI.getLv().getRooms().get(1).connectWestTo(levelGUI.getLv().getRooms().get(0));
+		System.out.println("Connected rooms");
 
 
         zero = String.format("Zero is: %d", getZero());
