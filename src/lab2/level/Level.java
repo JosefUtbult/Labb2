@@ -34,7 +34,7 @@ public class Level extends Observable {
 
         if(this.rooms.size() != 0){
             for (Room currentRoom : rooms) {
-                if (collisionDetection(r, currentRoom)){
+                if (r.intersectsWith(currentRoom)){
                     return false;
                 }
             }
@@ -48,33 +48,6 @@ public class Level extends Observable {
     public void firstLocation(Room r) {
 
     }
-
-    /**
-     * Checks that one Room doesn't intersect with another.
-     *
-     * @param room1 Room room1 to check.
-     * @param room2 Room room2 to check.
-     * @return boolean Returns true if the rooms intersect, false otherwise.
-     */
-    private boolean collisionDetection(Room room1, Room room2) {
-        return room1.getRectangleObject().intersects(room2.getRectangleObject());
-    }
-
-    private void roomArea() {
-        //TODO maybe
-    }
-/*
-    private boolean collisionDetecton(Room room1, Room room2){
-        return lowerCollisionDetecton(room1, room2) || lowerCollisionDetecton(room2, room1);
-    }
-
-    private boolean lowerCollisionDetecton(Room room1, Room room2){
-
-        return (room1.getPosX() < room2.getPosX() && room2.getPosX() < room1.getPosX() + room1.getWidth()) ||
-               (room1.getPosY() < room2.getPosY() && room2.getPosY() < room1.getPosY() + room1.getHeight());
-
-    }
-*/
 
     /**
      * Returns the array list of rooms, contained in the level.
