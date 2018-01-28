@@ -13,8 +13,8 @@ import java.util.Observer;
  */
 public class Level extends Observable {
 
-    private ArrayList<Room> rooms = new ArrayList<>();
-    private ArrayList<Observable> observers = new ArrayList<>();
+    private static ArrayList<Room> rooms = new ArrayList<>();
+    private static ArrayList<Observable> observers = new ArrayList<>();
 
     private Room currentRoom;
 
@@ -46,7 +46,7 @@ public class Level extends Observable {
     }
 
     public void firstLocation(Room r) {
-
+        currentRoom = r;
     }
 
     /**
@@ -57,17 +57,13 @@ public class Level extends Observable {
         return rooms;
     }
 
-    public void setCurrentRoom(Room room){
-        this.currentRoom = room;
-    }
-
     /**
      * "observer" are an array of observer objects, that contains every object that have to be updated
      * every time something changes, that has to be rendered.s
      * @param observer
      */
     public void addObserver(Observable observer){
-        observers.add(observer);
+        this.observers.add(observer);
     }
 
 
@@ -92,13 +88,14 @@ public class Level extends Observable {
      */
     public boolean move(char direction){
 
-        notifyObserver();
-		setChanged();
-
         switch (direction) {
         case 'w':
             if(currentRoom.getNorth() != null){
                 currentRoom = currentRoom.getNorth();
+
+                notifyObserver();
+                setChanged();
+
                 return true;
             }
             break;
@@ -106,6 +103,10 @@ public class Level extends Observable {
         case 's':
             if(currentRoom.getSouth() != null){
                 currentRoom = currentRoom.getSouth();
+
+                notifyObserver();
+                setChanged();
+
                 return true;
             }
             break;
@@ -113,6 +114,10 @@ public class Level extends Observable {
         case 'd':
             if(currentRoom.getWest() != null){
                 currentRoom = currentRoom.getWest();
+
+                notifyObserver();
+                setChanged();
+
                 return true;
             }
             break;
@@ -120,6 +125,10 @@ public class Level extends Observable {
         case 'a':
             if(currentRoom.getEast() != null){
                 currentRoom = currentRoom.getEast();
+
+                notifyObserver();
+                setChanged();
+
                 return true;
             }
             break;
@@ -131,4 +140,7 @@ public class Level extends Observable {
         return false;
     }
 
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
 }

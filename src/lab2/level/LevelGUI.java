@@ -1,17 +1,19 @@
 package lab2.level;
 
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
 /**
  * Class that implements a GUI for a simple 2D-game level with rooms.
@@ -20,7 +22,7 @@ import javax.swing.JPanel;
  * @author Josef Utbult
  * @author Oscar Brink
  */
-public class LevelGUI implements Observer {
+public class LevelGUI implements Observer{
 
     private Level lv;
     private Display d;
@@ -50,6 +52,7 @@ public class LevelGUI implements Observer {
 
         lv.addObserver(this);
     }
+
 
     /**
      * Repains the level when
@@ -84,6 +87,10 @@ public class LevelGUI implements Observer {
             setBackground(Color.darkGray);
             setPreferredSize(new Dimension(x+20,y+20));
             setFocusable(true);
+        }
+
+        public void repaint(Graphics g){
+            paintComponent(g);
         }
 
         /**
@@ -131,6 +138,21 @@ public class LevelGUI implements Observer {
 
         private void paintPlayer(Graphics g){
 
+            int size = 60;
+            JLayeredPane jLayeredPane = new JLayeredPane();
+
+            BufferedImage img = null;
+            try {
+                img = ImageIO.read(new File("images/Player.png"));
+            } catch (IOException e) {
+            }
+
+            g.drawImage(img,
+                    (lv.getCurrentRoom().getPosX() + lv.getCurrentRoom().getWidth() / 2) - size / 2,
+                    (lv.getCurrentRoom().getPosY() + lv.getCurrentRoom().getHeight() / 2) - size / 2,
+                    size, size, jLayeredPane);
+
+            this.add(jLayeredPane);
         }
 
 
