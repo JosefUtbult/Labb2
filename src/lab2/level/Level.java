@@ -13,7 +13,7 @@ import java.util.Observer;
  */
 public class Level extends Observable {
 
-    private LevelGUI levelGUI;
+    private LevelGUI levelGUI;      //TODO: Remove levelGUI and fix the observers and notifications.
     private static ArrayList<Room> rooms = new ArrayList<>();
     private static ArrayList<Observable> observers = new ArrayList<>();
 
@@ -100,7 +100,7 @@ public class Level extends Observable {
 
                 notifyObserver();
                 setChanged();
-                levelGUI.paint();
+                levelGUI.paint();           //TODO: Fix so that levelGUI is an observer and renders upon notifyObserver()
 
                 return true;
             }
