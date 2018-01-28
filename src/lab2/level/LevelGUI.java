@@ -85,10 +85,6 @@ public class LevelGUI implements Observer {
             for (Room room : fp.getRooms()) {
                 paintRoom(g, room);
             }
-
-            //super.paintComponent(g);
-
-
         }
 
         /**
@@ -100,10 +96,10 @@ public class LevelGUI implements Observer {
         private void paintRoom(Graphics g, Room room) {
             g.setColor(room.getColorObject());
             g.fillRect(
-                    (int) room.getRectangleObject().getX(),
-                    (int) room.getRectangleObject().getY(),
-                    (int) room.getRectangleObject().getWidth(),
-                    (int) room.getRectangleObject().getHeight()
+                    room.getPosX(),
+                    room.getPosY(),
+                    room.getWidth(),
+                    room.getHeight()
             );
         }
 
