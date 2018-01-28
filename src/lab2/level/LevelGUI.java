@@ -53,6 +53,10 @@ public class LevelGUI implements Observer {
 
     }
 
+    /**
+     * A class extended from JPanel
+     *
+     */
     private class Display extends JPanel {
 
         private Level fp;
