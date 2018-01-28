@@ -51,6 +51,12 @@ public class LevelGUI implements Observer{
         frame.setVisible(true);
 
         lv.addObserver(this);
+
+
+    }
+
+    public void paint(){
+        d.repaint();
     }
 
 

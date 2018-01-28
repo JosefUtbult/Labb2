@@ -13,10 +13,15 @@ import java.util.Observer;
  */
 public class Level extends Observable {
 
+    private LevelGUI levelGUI;
     private static ArrayList<Room> rooms = new ArrayList<>();
     private static ArrayList<Observable> observers = new ArrayList<>();
 
     private Room currentRoom;
+
+    public void setLevelGUI(LevelGUI levelGUI){
+        this.levelGUI = levelGUI;
+    }
 
     /**
      * Method takes in a Room object and tries to place it at the point
@@ -95,6 +100,7 @@ public class Level extends Observable {
 
                 notifyObserver();
                 setChanged();
+                levelGUI.paint();
 
                 return true;
             }
@@ -106,6 +112,7 @@ public class Level extends Observable {
 
                 notifyObserver();
                 setChanged();
+                levelGUI.paint();
 
                 return true;
             }
@@ -117,6 +124,7 @@ public class Level extends Observable {
 
                 notifyObserver();
                 setChanged();
+                levelGUI.paint();
 
                 return true;
             }
@@ -128,6 +136,7 @@ public class Level extends Observable {
 
                 notifyObserver();
                 setChanged();
+                levelGUI.paint();
 
                 return true;
             }
