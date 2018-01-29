@@ -70,6 +70,11 @@ public class LevelGUI implements Observer{
         d.repaint();
     }
 
+    public boolean hasChanged() {
+        d.repaint();
+        return true;
+    }
+
     /**
      * A class extended from JPanel
      *
@@ -144,7 +149,7 @@ public class LevelGUI implements Observer{
 
         private void paintPlayer(Graphics g){
 
-            int size = 60;
+            int size = 100;
             JLayeredPane jLayeredPane = new JLayeredPane();
 
             BufferedImage img = null;

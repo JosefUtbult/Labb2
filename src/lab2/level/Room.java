@@ -71,24 +71,40 @@ public class Room {
      */
     public void connectNorthTo(Room r) {
         north = r;
+
+        if(r.getSouth() != this){
+            r.connectSouthTo(this);
+        }
     }
     /**
      * @param r Room Room to set east of this.
      */
     public void connectEastTo(Room r) {
         east = r;
+
+        if(r.getWest() != this){
+            r.connectWestTo(this);
+        }
     }
     /**
      * @param r Room Room to set south of this.
      */
     public void connectSouthTo(Room r) {
         south = r;
+
+        if(r.getNorth() != this){
+            r.connectNorthTo(this);
+        }
     }
     /**
      * @param r Room Room to set west of this.
      */
     public void connectWestTo(Room r) {
         west = r;
+
+        if(r.getEast() != this){
+            r.connectEastTo(this);
+        }
     }
 
     /**

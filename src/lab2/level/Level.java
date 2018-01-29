@@ -13,15 +13,9 @@ import java.util.Observer;
  */
 public class Level extends Observable {
 
-    private LevelGUI levelGUI;      //TODO: Remove levelGUI and fix the observers and notifications.
     private static ArrayList<Room> rooms = new ArrayList<>();
-    private static ArrayList<Observable> observers = new ArrayList<>();
 
     private Room currentRoom;
-
-    public void setLevelGUI(LevelGUI levelGUI){
-        this.levelGUI = levelGUI;
-    }
 
     /**
      * Method takes in a Room object and tries to place it at the point
@@ -68,22 +62,8 @@ public class Level extends Observable {
      * @param observer
      */
     public void addObserver(Observable observer){
-        this.observers.add(observer);
     }
 
-
-    /**
-     * Overides notifyObserver from Observable, going through every object in "observers" and runs notify.
-     */
-    public void notifyObserver(){
-        for (Observable currentObserver : observers) {
-            currentObserver.notify();
-        }
-    }
-
-    public void setChanged(){
-
-    }
 
     /**
      * Method executes movement from one room in the level to another.
@@ -98,9 +78,7 @@ public class Level extends Observable {
             if(currentRoom.getNorth() != null){
                 currentRoom = currentRoom.getNorth();
 
-                notifyObserver();
-                setChanged();
-                levelGUI.paint();           //TODO: Fix so that levelGUI is an observer and renders upon notifyObserver()
+                update();
 
                 return true;
             }
@@ -110,33 +88,27 @@ public class Level extends Observable {
             if(currentRoom.getSouth() != null){
                 currentRoom = currentRoom.getSouth();
 
-                notifyObserver();
-                setChanged();
-                levelGUI.paint();
-
-                return true;
-            }
-            break;
-
-        case 'd':
-            if(currentRoom.getWest() != null){
-                currentRoom = currentRoom.getWest();
-
-                notifyObserver();
-                setChanged();
-                levelGUI.paint();
+                update();
 
                 return true;
             }
             break;
 
         case 'a':
+            if(currentRoom.getWest() != null){
+                currentRoom = currentRoom.getWest();
+
+                update();
+
+                return true;
+            }
+            break;
+
+        case 'd':
             if(currentRoom.getEast() != null){
                 currentRoom = currentRoom.getEast();
 
-                notifyObserver();
-                setChanged();
-                levelGUI.paint();
+                update();
 
                 return true;
             }
@@ -147,6 +119,11 @@ public class Level extends Observable {
         }
 
         return false;
+    }
+
+    private void update(){
+        setChanged();
+        notifyObservers();
     }
 
     public Room getCurrentRoom() {
