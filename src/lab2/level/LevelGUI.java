@@ -178,6 +178,10 @@ public class LevelGUI implements Observer{
 
         }
 
+        /**
+         * Displaying a player icon from "images/Player.png"
+         * @param g
+         */
         private void paintPlayer(Graphics g){
 
             int size = (int)(((double)Integer.min(lv.getCurrentRoom().getWidth(), lv.getCurrentRoom().getHeight())) * 0.7);

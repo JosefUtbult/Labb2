@@ -28,7 +28,10 @@ public class Main {
 
     }
 
-    private static void raveMode(){
+	/**
+	 * Runs "rave-mode", a mode with flashing lights.
+	 */
+	private static void raveMode(){
 
         Date date = Date.from(Instant.now());
         long lastTime = date.getTime();
