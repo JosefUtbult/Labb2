@@ -4,6 +4,12 @@ package lab2;
 
 import lab2.level.LevelGUI;
 
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
 import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;
@@ -24,6 +30,7 @@ public class Main {
     }
 
     private static void raveMode(){
+
         Date date = Date.from(Instant.now());
         long lastTime = date.getTime();
 
@@ -31,7 +38,6 @@ public class Main {
 
             date = Date.from(Instant.now());
             if(date.getTime() - lastTime >= 100){
-                System.out.println("Next color.");
                 Driver.getLevelGUI().updateFlashingColor();
                 Driver.getLevelGUI().getLv().update();
                 lastTime = date.getTime();
@@ -46,6 +52,8 @@ public class Main {
         //If you want that user terminates it with 'c' char
         return scanner.nextLine().equals("c");
     }
+
+
 
 
 }
