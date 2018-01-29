@@ -158,21 +158,34 @@ public class LevelGUI implements Observer{
 
             int wallWidth = 10;
 
-            g.setColor(room.getColorObject().darker().darker());
-            g.fillRect(
-                    room.getPosX(),
-                    room.getPosY(),
-                    room.getWidth(),
-                    room.getHeight()
-            );
+            if(room.getColorObject() != Color.darkGray || lv.getCurrentRoom() == room){
 
-            g.setColor(room.getColorObject());
-            g.fillRect(
-                    room.getPosX() + wallWidth,
-                    room.getPosY() + wallWidth,
-                    room.getWidth() - wallWidth * 2,
-                    room.getHeight() - wallWidth * 2
-            );
+                g.setColor(room.getColorObject().darker().darker());
+                g.fillRect(
+                        room.getPosX(),
+                        room.getPosY(),
+                        room.getWidth(),
+                        room.getHeight()
+                );
+
+                g.setColor(room.getColorObject());
+                g.fillRect(
+                        room.getPosX() + wallWidth,
+                        room.getPosY() + wallWidth,
+                        room.getWidth() - wallWidth * 2,
+                        room.getHeight() - wallWidth * 2
+                );
+            }
+            else{
+                g.setColor(room.getColorObject());
+                g.fillRect(
+                        room.getPosX(),
+                        room.getPosY(),
+                        room.getWidth(),
+                        room.getHeight()
+                );
+            }
+
 
 
 

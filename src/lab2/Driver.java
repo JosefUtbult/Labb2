@@ -64,6 +64,7 @@ public class Driver {
         levelGUI.getLv().place(new Room(100, 300, Color.yellow), levelGUI.getLv().getRooms().get(0), 'n');
         levelGUI.getLv().place(new Room(100, 300, Color.yellow), levelGUI.getLv().getRooms().get(0), 's');
 
+        levelGUI.getLv().place(new Room(200, 100, Color.darkGray), levelGUI.getLv().getRooms().get(3), 'n');
 
         /*
         int nrOfRooms = 6;
