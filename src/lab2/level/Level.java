@@ -121,7 +121,7 @@ public class Level extends Observable {
         return false;
     }
 
-    private void update(){
+    public void update(){
         setChanged();
         notifyObservers();
     }

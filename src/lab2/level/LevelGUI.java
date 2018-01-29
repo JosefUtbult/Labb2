@@ -9,8 +9,11 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Time;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Random;
+import java.util.RandomAccess;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -26,6 +29,9 @@ public class LevelGUI implements Observer{
 
     private Level lv;
     private Display d;
+    private Color[] flashingColors;
+    private int currentFlashingColor = -1;
+
 
     /**
      * Constructor.
@@ -52,6 +58,7 @@ public class LevelGUI implements Observer{
 
         lv.addObserver(this);
 
+        flashingColors = new Color[]{Color.blue, Color.red, Color.green, Color.yellow};
 
     }
 
@@ -70,10 +77,18 @@ public class LevelGUI implements Observer{
         d.repaint();
     }
 
-    public boolean hasChanged() {
-        d.repaint();
-        return true;
+    public void updateFlashingColor(){
+
+        if(this.currentFlashingColor != -1){
+            currentFlashingColor = new Random().nextInt(flashingColors.length);
+        }
+        int temp = this.currentFlashingColor;
+
+        while (this.currentFlashingColor == temp){
+            this.currentFlashingColor = new Random().nextInt(flashingColors.length);
+        }
     }
+
 
     /**
      * A class extended from JPanel
@@ -117,6 +132,16 @@ public class LevelGUI implements Observer{
             }
 
             paintPlayer(g);
+            paintFlashingLihts(g);
+        }
+
+        private void paintFlashingLihts(Graphics g){
+
+            if(currentFlashingColor != -1){
+                g.setColor(new Color(flashingColors[currentFlashingColor].getRed(), flashingColors[currentFlashingColor].getGreen(), flashingColors[currentFlashingColor].getBlue(), 100));
+                g.fillRect(0, 0, (int)getBounds().getWidth(), (int)getBounds().getHeight());
+            }
+
         }
 
         /**
@@ -144,6 +169,8 @@ public class LevelGUI implements Observer{
                     room.getWidth() - wallWidth * 2,
                     room.getHeight() - wallWidth * 2
             );
+
+
 
         }
 

@@ -2,20 +2,42 @@ package lab2;
 
 //import lab2.Driver;
 
+import lab2.level.LevelGUI;
+
+import java.time.Instant;
+import java.util.Date;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        new Driver().run();
+        Driver driver = new Driver();
+        driver.run();
+
         System.out.println("Hej");
 
-        Scanner s = new Scanner(System.in);
-        if (s.next() != "") {
-
+        if(args.length >= 1 && Objects.equals(args[0], "--rave-mode")){
+            raveMode();
         }
 
-        return;
+    }
+
+    private static void raveMode(){
+        Date date = Date.from(Instant.now());
+        long lastTime = date.getTime();
+
+        while (true){
+
+            date = Date.from(Instant.now());
+            if(date.getTime() - lastTime >= 100){
+                System.out.println("Next color.");
+                Driver.getLevelGUI().updateFlashingColor();
+                Driver.getLevelGUI().getLv().update();
+                lastTime = date.getTime();
+            }
+
+        }
     }
 
     private static boolean userTerminates(){

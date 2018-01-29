@@ -5,6 +5,8 @@ import lab2.level.LevelGUI;
 import lab2.level.Room;
 
 import java.awt.*;
+import java.time.Instant;
+import java.util.Date;
 
 /**
  * Class runs a simple game with a top-down 2D-level.
@@ -50,7 +52,6 @@ public class Driver {
         zero = String.format("Zero is: %d", getZero());
 
         System.out.println(zero);
-
 
     }
 
