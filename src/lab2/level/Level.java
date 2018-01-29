@@ -79,6 +79,7 @@ public class Level extends Observable {
                 currentRoom = currentRoom.getNorth();
 
                 update();
+                System.out.println("You know da wae");
 
                 return true;
             }
@@ -89,6 +90,7 @@ public class Level extends Observable {
                 currentRoom = currentRoom.getSouth();
 
                 update();
+                System.out.println("You know da wae");
 
                 return true;
             }
@@ -99,6 +101,7 @@ public class Level extends Observable {
                 currentRoom = currentRoom.getWest();
 
                 update();
+                System.out.println("You know da wae");
 
                 return true;
             }
@@ -109,15 +112,15 @@ public class Level extends Observable {
                 currentRoom = currentRoom.getEast();
 
                 update();
+                System.out.println("You know da wae");
 
                 return true;
             }
             break;
         default:
-			System.out.println("Thats not a direction.");
 			break;
         }
-
+        System.out.println("That is not tha wae. Do you know da wae?");
         return false;
     }
 

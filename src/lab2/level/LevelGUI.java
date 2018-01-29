@@ -208,7 +208,7 @@ public class LevelGUI implements Observer{
 
                 //System.out.format("%s was pressed\n", event.getKeyChar());
 
-                System.out.println(lv.move(event.getKeyChar()) ? "Moved." : "Could not move.");
+                lv.move(event.getKeyChar());
             }
         }
 
