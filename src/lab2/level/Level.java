@@ -31,7 +31,7 @@ public class Level extends Observable {
 
         r.setPos(x, y);
 
-        if(this.rooms.size() != 0){
+        if(rooms.size() != 0){
             for (Room currentRoom : rooms) {
                 if (r.intersectsWith(currentRoom)){
                     return false;
@@ -43,6 +43,89 @@ public class Level extends Observable {
         return true;
 
     }
+
+	/**
+	 * Placeing a room in relation to another room and a direction.
+	 * @param room
+	 * @param connectedRoom
+	 * @param direction
+	 * @return
+	 */
+    public boolean place(Room room, Room connectedRoom, char direction){
+
+    	boolean returnValue = false;
+
+		switch (direction) {
+			case 'n':
+				if(!place(
+						room,
+						connectedRoom.getPosX() + (connectedRoom.getWidth() - room.getWidth()) / 2,
+						connectedRoom.getPosY() - room.getHeight() - 1
+				)){
+					returnValue =  false;
+				}
+				else{
+					connectedRoom.connectNorthTo(room);
+					returnValue =  true;
+				}
+			break;
+
+			case 'e':
+
+				if(!place(
+						room,
+						connectedRoom.getPosX() + connectedRoom.getWidth() + 1,
+						connectedRoom.getPosY() + (connectedRoom.getHeight() - room.getHeight()) / 2
+				)){
+					returnValue =   false;
+				}
+				else{
+					connectedRoom.connectEastTo(room);
+					returnValue =   true;
+				}
+			break;
+
+			case 's':
+
+				if(!place(
+						room,
+						connectedRoom.getPosX() + (connectedRoom.getWidth() - room.getWidth()) / 2,
+						connectedRoom.getPosY() + connectedRoom.getHeight() + 1
+				)){
+					returnValue =  false;
+				}
+				else{
+					connectedRoom.connectSouthTo(room);
+					return true;
+				}
+				break;
+
+
+			case 'w':
+
+				if(!place(
+						room,
+						connectedRoom.getPosX() - 1 - room.getWidth(),
+						connectedRoom.getPosY() + (connectedRoom.getHeight() - room.getHeight()) / 2
+				)){
+					returnValue =  false;
+				}
+				else{
+					connectedRoom.connectWestTo(room);
+					returnValue =   true;
+				}
+
+
+			break;
+
+			default:
+				returnValue = false;
+			break;
+		}
+
+		return returnValue;
+
+	}
 
     public void firstLocation(Room r) {
         currentRoom = r;
@@ -73,7 +156,7 @@ public class Level extends Observable {
      */
     public boolean move(char direction){
 
-        switch (direction) {
+        switch (Character.toLowerCase(direction)) {
         case 'w':
             if(currentRoom.getNorth() != null){
                 currentRoom = currentRoom.getNorth();

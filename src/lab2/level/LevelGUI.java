@@ -89,6 +89,10 @@ public class LevelGUI implements Observer{
         }
     }
 
+    public Level getLv(){
+        return lv;
+    }
+
 
     /**
      * A class extended from JPanel
@@ -176,7 +180,9 @@ public class LevelGUI implements Observer{
 
         private void paintPlayer(Graphics g){
 
-            int size = 100;
+            int size = (int)(((double)Integer.min(lv.getCurrentRoom().getWidth(), lv.getCurrentRoom().getHeight())) * 0.7);
+
+
             JLayeredPane jLayeredPane = new JLayeredPane();
 
             BufferedImage img = null;
@@ -214,8 +220,5 @@ public class LevelGUI implements Observer{
 
     }
 
-    public Level getLv(){
-        return lv;
-    }
 
 }

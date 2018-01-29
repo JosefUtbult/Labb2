@@ -57,6 +57,15 @@ public class Driver {
 
     private void addRooms(LevelGUI levelGUI){
 
+        levelGUI.getLv().place(new Room(300, 300, Color.blue), 650, 400);
+
+        levelGUI.getLv().place(new Room(300, 100, Color.yellow), levelGUI.getLv().getRooms().get(0), 'w');
+        levelGUI.getLv().place(new Room(300, 100, Color.yellow), levelGUI.getLv().getRooms().get(0), 'e');
+        levelGUI.getLv().place(new Room(100, 300, Color.yellow), levelGUI.getLv().getRooms().get(0), 'n');
+        levelGUI.getLv().place(new Room(100, 300, Color.yellow), levelGUI.getLv().getRooms().get(0), 's');
+
+
+        /*
         int nrOfRooms = 6;
 
         Color roomColors[] = new Color[]{Color.blue, Color.yellow, Color.green, Color.red, Color.pink, Color.CYAN};

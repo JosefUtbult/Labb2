@@ -21,7 +21,6 @@ public class Main {
         Driver driver = new Driver();
         driver.run();
 
-        System.out.println("Hej");
 
         if(args.length >= 1 && Objects.equals(args[0], "--rave-mode")){
             raveMode();
@@ -44,13 +43,6 @@ public class Main {
             }
 
         }
-    }
-
-    private static boolean userTerminates(){
-        Scanner scanner = new Scanner(System.in);
-
-        //If you want that user terminates it with 'c' char
-        return scanner.nextLine().equals("c");
     }
 
 
