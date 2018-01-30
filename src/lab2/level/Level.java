@@ -45,12 +45,12 @@ public class Level extends Observable {
     }
 
 	/**
-	 * Placeing a room in relation to another room and a direction.
-	 * @param room
-	 * @param connectedRoom
-	 * @param direction
-	 * @return
-	 */
+     * Placeing a room in relation to another room and a direction.
+     * @param room
+     * @param connectedRoom
+     * @param direction
+     * @return
+     */
     public boolean place(Room room, Room connectedRoom, char direction){
 
     	boolean returnValue = false;
@@ -77,13 +77,12 @@ public class Level extends Observable {
 						connectedRoom.getPosX() + connectedRoom.getWidth() + 1,
 						connectedRoom.getPosY() + (connectedRoom.getHeight() - room.getHeight()) / 2
 				)){
-					returnValue =   false;
+					return false;
 				}
 				else{
 					connectedRoom.connectEastTo(room);
-					returnValue =   true;
+					return true;
 				}
-			break;
 
 			case 's':
 
@@ -210,6 +209,30 @@ public class Level extends Observable {
     public void update(){
         setChanged();
         notifyObservers();
+    }
+
+    public void makeDoorway(Room room1, Room room2, char direction) {
+        switch(direction) {
+        case 'n':
+            room1.connectNorthTo(room2);
+            room2.connectSouthTo(room1);
+            break;
+        case 's':
+            room1.connectSouthTo(room2);
+            room2.connectNorthTo(room1);
+            break;
+        case 'w':
+            room1.connectWestTo(room2);
+            room2.connectEastTo(room1);
+            break;
+        case 'e':
+            room1.connectEastTo(room1);
+            room2.connectWestTo(room1);
+            break;
+        default:
+            System.out.println("\'" + direction + "\' not a direction.");
+            break;
+        }
     }
 
     public Room getCurrentRoom() {
