@@ -2,7 +2,6 @@ package lab2.level;
 
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Observer;
 
 /**
  * Class creates a 2D-level for use in a simple game.
@@ -16,6 +15,8 @@ public class Level extends Observable {
     private static ArrayList<Room> rooms = new ArrayList<>();
 
     private Room currentRoom;
+    private int doorwaySize;
+    private int wallWidth;
 
     /**
      * Method takes in a Room object and tries to place it at the point
@@ -28,7 +29,9 @@ public class Level extends Observable {
      *          room, false otherwise.
      */
     public boolean place(Room r, int x, int y)  {
-
+        if (!doorwaySizeOk(r)) {
+            return false;
+        }
         r.setPos(x, y);
 
         if(rooms.size() != 0){
@@ -39,9 +42,26 @@ public class Level extends Observable {
             }
         }
 
+
         rooms.add(r);
         return true;
 
+    }
+
+    private boolean doorwaySizeOk(Room room) {
+        int minXY = Integer.min(room.getHeight(),room.getWidth()) - this.wallWidth*2;
+        int tempDoorwaySize = this.doorwaySize;
+
+        if (minXY < tempDoorwaySize) {
+            tempDoorwaySize = minXY - 10;
+        }
+
+        if (tempDoorwaySize <= 0) {
+            return false;
+        } else {
+            this.doorwaySize = tempDoorwaySize;
+            return true;
+        }
     }
 
 	/**
@@ -235,7 +255,25 @@ public class Level extends Observable {
         }
     }
 
+
+
     public Room getCurrentRoom() {
         return currentRoom;
+    }
+
+    public void setDoorwaySize(int doorwaySize) {
+        this.doorwaySize = doorwaySize;
+    }
+
+    public int getWallWidth() {
+        return wallWidth;
+    }
+
+    public void setWallWidth(int wallWidth) {
+        this.wallWidth = wallWidth;
+    }
+
+    public int getDoorwaySize() {
+        return doorwaySize;
     }
 }

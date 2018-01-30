@@ -4,16 +4,12 @@ package lab2.level;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Time;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
-import java.util.RandomAccess;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -156,7 +152,7 @@ public class LevelGUI implements Observer{
          */
         private void paintRoom(Graphics g, Room room) {
 
-            int wallWidth = 10;
+            int wallWidth = fp.getWallWidth();
 
             if(room.getColorObject() != Color.darkGray || lv.getCurrentRoom() == room){
 
@@ -185,10 +181,45 @@ public class LevelGUI implements Observer{
                         room.getHeight()
                 );
             }
+            paintDoorways(g, room);
+        }
 
+        private void paintDoorways(Graphics g, Room room) {
+            int doorwayWidth = fp.getDoorwaySize();
+            int wallWidth = fp.getWallWidth();
 
-
-
+            if (room.getNorth() != null) {
+                g.fillRect(
+                        room.getPosX() + room.getWidth()/2 -doorwayWidth/2,
+                        room.getPosY(),
+                        doorwayWidth,
+                        wallWidth
+                );
+            }
+            if (room.getSouth() != null) {
+                g.fillRect(
+                        room.getPosX() + room.getWidth()/2 - doorwayWidth/2,
+                        room.getPosY() + room.getHeight() - wallWidth,
+                        doorwayWidth,
+                        wallWidth
+                );
+            }
+            if (room.getWest() != null) {
+                g.fillRect(
+                        room.getPosX(),
+                        room.getPosY() + room.getHeight()/2 - doorwayWidth/2,
+                        wallWidth,
+                        doorwayWidth
+                );
+            }
+            if (room.getEast() != null) {
+                g.fillRect(
+                        room.getPosX() + room.getWidth() - wallWidth,
+                        room.getPosY() + room.getHeight()/2 - doorwayWidth/2,
+                        wallWidth,
+                        doorwayWidth
+                );
+            }
         }
 
         /**

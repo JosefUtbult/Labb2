@@ -32,6 +32,8 @@ public class Driver {
         r3.connectSouthTo(r2);
         */
         levelGUI = new LevelGUI(new Level(), "Killing floor");
+        levelGUI.getLv().setDoorwaySize(60);
+        levelGUI.getLv().setWallWidth(10);
         levelGUI.getLv().addObserver(levelGUI);
 
         addRooms(levelGUI);
@@ -56,6 +58,9 @@ public class Driver {
         levelGUI.getLv().place(new Room(300, 100, Color.yellow), levelGUI.getLv().getRooms().get(0), 'e');
         levelGUI.getLv().place(new Room(100, 300, Color.yellow), levelGUI.getLv().getRooms().get(0), 'n');
         levelGUI.getLv().place(new Room(100, 300, Color.yellow), levelGUI.getLv().getRooms().get(0), 's');
+        levelGUI.getLv().place(new Room(300, 300, Color.red), levelGUI.getLv().getRooms().get(3), 'w');
+        levelGUI.getLv().place(new Room(80, 80, Color.magenta), levelGUI.getLv().getRooms().get(3), 'e');
+        levelGUI.getLv().place(new Room(20, 100, Color.orange), levelGUI.getLv().getRooms().get(1), 'w');
 
     }
 
