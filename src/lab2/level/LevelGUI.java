@@ -32,6 +32,7 @@ public class LevelGUI implements Observer{
     private Color[] flashingColors;
     private int currentFlashingColor = -1;
 
+    private boolean raveMode = false;
 
     /**
      * Constructor.
@@ -74,6 +75,10 @@ public class LevelGUI implements Observer{
      */
     public void update(Observable arg0, Object arg1) {
 
+        if(lv.getCurrentRoom().getColorObject() == Color.BLUE){
+            raveMode = true;
+        }
+
         d.repaint();
     }
 
@@ -91,6 +96,10 @@ public class LevelGUI implements Observer{
 
     public Level getLv(){
         return lv;
+    }
+
+    public void setRaveMode(boolean raveMode){
+        this.raveMode = raveMode;
     }
 
 
@@ -136,7 +145,10 @@ public class LevelGUI implements Observer{
             }
 
             paintPlayer(g);
-            paintFlashingLihts(g);
+
+            if(raveMode){
+                paintFlashingLihts(g);
+            }
         }
 
         private void paintFlashingLihts(Graphics g){
