@@ -5,8 +5,6 @@ import lab2.level.LevelGUI;
 import lab2.level.Room;
 
 import java.awt.*;
-import java.time.Instant;
-import java.util.Date;
 
 /**
  * Class runs a simple game with a top-down 2D-level.
@@ -31,14 +29,15 @@ public class Driver {
         r2.connectNorthTo(r3);
         r3.connectSouthTo(r2);
         */
+
         levelGUI = new LevelGUI(new Level(), "Killing floor");
         levelGUI.getLv().setDoorwaySize(60);
         levelGUI.getLv().setWallWidth(10);
         levelGUI.getLv().addObserver(levelGUI);
 
         addRooms(levelGUI);
-
         levelGUI.getLv().firstLocation(levelGUI.getLv().getRooms().get(0));
+        levelGUI.getLv().update();
 
         System.out.println("Connected rooms");
 
@@ -52,6 +51,31 @@ public class Driver {
 
     private void addRooms(LevelGUI levelGUI){
 
+        levelGUI.getLv().place(new Room(1500, 100, Color.ORANGE), 100, 100);
+        levelGUI.getLv().place(new Room(100, 100, Color.ORANGE), levelGUI.getLv().getRooms().get(0), 'e');
+
+        levelGUI.getLv().place(new Room(100, 600, Color.ORANGE), levelGUI.getLv().getRooms().get(1), 's');
+        levelGUI.getLv().place(new Room(100, 100, Color.ORANGE), levelGUI.getLv().getRooms().get(2), 's');
+
+        levelGUI.getLv().place(new Room(1400, 100, Color.ORANGE), levelGUI.getLv().getRooms().get(3), 'w');
+        levelGUI.getLv().place(new Room(100, 100, Color.ORANGE), levelGUI.getLv().getRooms().get(4), 'w');
+
+        levelGUI.getLv().place(new Room(100, 400, Color.ORANGE), levelGUI.getLv().getRooms().get(5), 'n');
+        levelGUI.getLv().place(new Room(100, 100, Color.ORANGE), levelGUI.getLv().getRooms().get(6), 'n');
+
+        levelGUI.getLv().place(new Room(1200, 100, Color.ORANGE), levelGUI.getLv().getRooms().get(7), 'e');
+        levelGUI.getLv().place(new Room(100, 100, Color.ORANGE), levelGUI.getLv().getRooms().get(8), 'e');
+
+        levelGUI.getLv().place(new Room(100, 250, Color.ORANGE), levelGUI.getLv().getRooms().get(9), 's');
+        levelGUI.getLv().place(new Room(100, 100, Color.ORANGE), levelGUI.getLv().getRooms().get(10), 's');
+
+        levelGUI.getLv().place(new Room(500, 100, Color.ORANGE), levelGUI.getLv().getRooms().get(11), 'w');
+        levelGUI.getLv().place(new Room(100, 100, Color.ORANGE), levelGUI.getLv().getRooms().get(12), 'w');
+
+        levelGUI.getLv().place(new Room(300, 150, Color.BLUE), levelGUI.getLv().getRooms().get(13), 'n');
+
+
+        /*
         levelGUI.getLv().place(new Room(300, 300, Color.blue), 650, 400);
 
         levelGUI.getLv().place(new Room(300, 100, Color.yellow), levelGUI.getLv().getRooms().get(0), 'w');
@@ -61,6 +85,10 @@ public class Driver {
         levelGUI.getLv().place(new Room(300, 300, Color.red), levelGUI.getLv().getRooms().get(3), 'w');
         levelGUI.getLv().place(new Room(80, 80, Color.magenta), levelGUI.getLv().getRooms().get(3), 'e');
         levelGUI.getLv().place(new Room(20, 100, Color.orange), levelGUI.getLv().getRooms().get(1), 'w');
+
+        levelGUI.getLv().place(new Room(200, 100, Color.darkGray), levelGUI.getLv().getRooms().get(3), 'n');
+        */
+
 
     }
 

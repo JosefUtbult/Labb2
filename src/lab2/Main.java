@@ -23,15 +23,8 @@ public class Main {
 
 
         if(args.length >= 1 && Objects.equals(args[0], "--rave-mode")){
-            raveMode();
+            Driver.getLevelGUI().setRaveMode(true);
         }
-
-    }
-
-	/**
-	 * Runs "rave-mode", a mode with flashing lights.
-	 */
-	private static void raveMode(){
 
         Date date = Date.from(Instant.now());
         long lastTime = date.getTime();
@@ -46,7 +39,9 @@ public class Main {
             }
 
         }
+
     }
+
 
 
 
