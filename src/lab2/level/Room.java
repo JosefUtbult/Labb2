@@ -181,7 +181,7 @@ public class Room {
     }
 
     public String toString() {
-        return "x:" + width + " y:" + height + " " + color;
+        return "width:" + width + " height:" + height + " " + color;
     }
 
 

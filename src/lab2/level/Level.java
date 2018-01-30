@@ -53,7 +53,6 @@ public class Level extends Observable {
      */
     public boolean place(Room room, Room connectedRoom, char direction){
 
-    	boolean returnValue = false;
 
 		switch (direction) {
 			case 'n':
@@ -62,13 +61,12 @@ public class Level extends Observable {
 						connectedRoom.getPosX() + (connectedRoom.getWidth() - room.getWidth()) / 2,
 						connectedRoom.getPosY() - room.getHeight() - 1
 				)){
-					returnValue =  false;
+					return false;
 				}
 				else{
 					connectedRoom.connectNorthTo(room);
-					returnValue =  true;
+					return true;
 				}
-			break;
 
 			case 'e':
 
@@ -91,13 +89,12 @@ public class Level extends Observable {
 						connectedRoom.getPosX() + (connectedRoom.getWidth() - room.getWidth()) / 2,
 						connectedRoom.getPosY() + connectedRoom.getHeight() + 1
 				)){
-					returnValue =  false;
+					return false;
 				}
 				else{
 					connectedRoom.connectSouthTo(room);
 					return true;
 				}
-				break;
 
 
 			case 'w':
@@ -107,22 +104,19 @@ public class Level extends Observable {
 						connectedRoom.getPosX() - 1 - room.getWidth(),
 						connectedRoom.getPosY() + (connectedRoom.getHeight() - room.getHeight()) / 2
 				)){
-					returnValue =  false;
+					return false;
 				}
 				else{
 					connectedRoom.connectWestTo(room);
-					returnValue =   true;
+					return true;
 				}
 
 
-			break;
 
 			default:
-				returnValue = false;
-			break;
+				return false;
 		}
 
-		return returnValue;
 
 	}
 
