@@ -18,7 +18,6 @@ public class Level extends Observable {
     private int doorwaySize;
     private int wallWidth;
 
-    private static Room emptyRoom = new Room();
 
     /**
      * Method takes in a Room object and tries to place it at the point

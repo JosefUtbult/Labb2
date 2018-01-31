@@ -88,6 +88,26 @@ public class Room {
         }
     }
 
+    public void setOneWayPortal(Room other, char direction) {
+        switch (direction) {
+            case 'n':
+                north = other;
+                break;
+            case 's':
+                south = other;
+                break;
+            case 'e':
+                east = other;
+                break;
+            case 'w':
+                west = other;
+                break;
+            default:
+                System.out.println("Direction \'" + direction + "\' not recognized.");
+                break;
+        }
+    }
+
     /**
      * @param r Room Room to set north of this.
      */
@@ -114,9 +134,9 @@ public class Room {
     public void connectSouthTo(Room r) {
         south = r;
 
-        //if(r.getNorth() != this){
-        //    r.connectNorthTo(this);
-        //}
+        if(r.getNorth() != this){
+            r.connectNorthTo(this);
+        }
     }
     /**
      * @param r Room Room to set west of this.

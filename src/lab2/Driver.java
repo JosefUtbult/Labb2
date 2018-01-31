@@ -29,14 +29,17 @@ public class Driver {
         r2.connectNorthTo(r3);
         r3.connectSouthTo(r2);
         */
+        Level level = new Level();
+        level.getRooms().add(new Room(1500, 100, Color.ORANGE));
+        level.firstLocation(level.getRooms().get(0));
 
-        levelGUI = new LevelGUI(new Level(), "Killing floor");
+        levelGUI = new LevelGUI(level, "Killing floor");
         levelGUI.getLv().setDoorwaySize(60);
         levelGUI.getLv().setWallWidth(10);
         levelGUI.getLv().addObserver(levelGUI);
 
         addRooms(levelGUI);
-        levelGUI.getLv().firstLocation(levelGUI.getLv().getRooms().get(0));
+        //levelGUI.getLv().firstLocation(levelGUI.getLv().getRooms().get(0));
         levelGUI.getLv().update();
 
         System.out.println("Connected rooms");
@@ -51,7 +54,8 @@ public class Driver {
 
     private void addRooms(LevelGUI levelGUI){
 
-        levelGUI.getLv().place(new Room(1500, 100, Color.ORANGE), 100, 100);
+        //levelGUI.getLv().place(new Room(1500, 100, Color.ORANGE), 100, 100);
+        levelGUI.getLv().place(levelGUI.getLv().getRooms().get(0), 100, 100);
         levelGUI.getLv().place(new Room(100, 100, Color.ORANGE), levelGUI.getLv().getRooms().get(0), 'e');
 
         levelGUI.getLv().place(new Room(100, 600, Color.ORANGE), levelGUI.getLv().getRooms().get(1), 's');
@@ -60,7 +64,7 @@ public class Driver {
         levelGUI.getLv().place(new Room(1400, 100, Color.ORANGE), levelGUI.getLv().getRooms().get(3), 'w');
         levelGUI.getLv().place(new Room(100, 100, Color.ORANGE), levelGUI.getLv().getRooms().get(4), 'w');
 
-        levelGUI.getLv().place(new Room(100, 400, Color.ORANGE), levelGUI.getLv().getRooms().get(5), 'n');
+        levelGUI.getLv().place(new Room(100, 400, Color.RED), levelGUI.getLv().getRooms().get(5), 'n');
         levelGUI.getLv().place(new Room(100, 100, Color.ORANGE), levelGUI.getLv().getRooms().get(6), 'n');
 
         levelGUI.getLv().place(new Room(1200, 100, Color.ORANGE), levelGUI.getLv().getRooms().get(7), 'e');
@@ -74,9 +78,9 @@ public class Driver {
 
         levelGUI.getLv().place(new Room(300, 150, Color.BLUE), levelGUI.getLv().getRooms().get(13), 'n');
 
-        levelGUI.getLv().place(new Room(60, 60, Color.GREEN), 0, 0);
-        levelGUI.getLv().getRooms().get(15).connectEastTo(levelGUI.getLv().getRooms().get(0));
-        levelGUI.getLv().getRooms().get(0).connectWestTo(levelGUI.getLv().getRooms().get(15));
+        levelGUI.getLv().place(new Room(70, 120, Color.GREEN), 0, 0);
+        levelGUI.getLv().getRooms().get(0).setOneWayPortal(levelGUI.getLv().getRooms().get(15), 'w');
+        levelGUI.getLv().getRooms().get(15).setOneWayPortal(levelGUI.getLv().getRooms().get(6), 's');
         levelGUI.getLv().getRooms().get(0).connectSouthTo(levelGUI.getLv().getRooms().get(14));
 
 

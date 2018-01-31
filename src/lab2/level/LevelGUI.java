@@ -197,6 +197,7 @@ public class LevelGUI implements Observer{
         }
 
         private void paintDoorways(Graphics g, Room room) {
+
             int doorwayWidth = fp.getDoorwaySize();
             int wallWidth = fp.getWallWidth();
             char direction;
@@ -209,74 +210,62 @@ public class LevelGUI implements Observer{
                 xPos = room.getPosX() + room.getWidth()/2 - doorwayWidth/2;
                 yPos = room.getPosY();
                 if (!room.isAdjacentTo(room.getNorth(), direction)) {
-                    g.setColor(Color.cyan);
+                    g.setColor(room.getNorth().getColorObject());
                 }
-                g.fillRect(
-                        xPos,
-                        yPos,
-                        doorwayWidth,
-                        wallWidth
-                );
+
+                g.fillRect(xPos, yPos, doorwayWidth, wallWidth);
+
                 if (room.getNorth().getSouth() != room) {
                     paintPortalDirection(g, room, true, xPos, yPos, direction);
                 }
                 g.setColor(tempColor);
             }
+
             if (room.getSouth() != null) {
                 direction = 's';
                 xPos = room.getPosX() + room.getWidth()/2 - doorwayWidth/2;
                 yPos = room.getPosY() + room.getHeight() - wallWidth;
                 if (!room.isAdjacentTo(room.getSouth(), direction)) {
-                    g.setColor(Color.cyan);
+                    g.setColor(room.getSouth().getColorObject());
                 }
-                g.fillRect(
-                        xPos,
-                        yPos,
-                        doorwayWidth,
-                        wallWidth
-                );
+
+                g.fillRect(xPos, yPos, doorwayWidth, wallWidth);
+
                 if (room.getSouth().getNorth() != room) {
                     paintPortalDirection(g, room, true, xPos, yPos, direction);
                 }
                 g.setColor(tempColor);
             }
+
             if (room.getWest() != null) {
                 direction = 'w';
                 xPos = room.getPosX();
                 yPos = room.getPosY() + room.getHeight()/2 - doorwayWidth/2;
 
                 if(!room.isAdjacentTo(room.getWest(), direction)) {
-                    g.setColor(Color.cyan);
+                    g.setColor(room.getWest().getColorObject());
                 }
-                g.fillRect(
-                        xPos,
-                        yPos,
-                        wallWidth,
-                        doorwayWidth
-                );
+                g.fillRect(xPos, yPos, wallWidth, doorwayWidth);
                 if (room.getWest().getEast() != room) {
                     paintPortalDirection(g, room, true, xPos, yPos, direction);
                 }
                 g.setColor(tempColor);
             }
+
             if (room.getEast() != null) {
                 direction = 'e';
                 xPos = room.getPosX() + room.getWidth() - wallWidth;
                 yPos = room.getPosY() + room.getHeight()/2 - doorwayWidth/2;
                 if (!room.isAdjacentTo(room.getEast(), direction)) {
-                    g.setColor(Color.cyan);
+                    g.setColor(room.getEast().getColorObject());
                 }
-                g.fillRect(
-                        xPos,
-                        yPos,
-                        wallWidth,
-                        doorwayWidth
-                );
+                g.fillRect(xPos, yPos, wallWidth, doorwayWidth);
                 if (room.getEast().getWest() != room) {
                     paintPortalDirection(g, room, true, xPos, yPos, direction);
                 }
                 g.setColor(tempColor);
             }
+
         }
 
         private void paintPortalDirection(Graphics g, Room room, boolean outgoing, int xPos, int yPos, char direction) {
