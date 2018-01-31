@@ -143,11 +143,11 @@ public class LevelGUI implements Observer{
             paintPlayer(g);
 
             if(raveMode){
-                paintFlashingLihts(g);
+                paintFlashingLights(g);
             }
         }
 
-        private void paintFlashingLihts(Graphics g){
+        private void paintFlashingLights(Graphics g){
 
             if(currentFlashingColor != -1){
                 g.setColor(new Color(flashingColors[currentFlashingColor].getRed(), flashingColors[currentFlashingColor].getGreen(), flashingColors[currentFlashingColor].getBlue(), 100));
@@ -199,39 +199,131 @@ public class LevelGUI implements Observer{
         private void paintDoorways(Graphics g, Room room) {
             int doorwayWidth = fp.getDoorwaySize();
             int wallWidth = fp.getWallWidth();
+            char direction;
+
+            int xPos, yPos;
+            Color tempColor = room.getColorObject();
 
             if (room.getNorth() != null) {
+                direction = 'n';
+                xPos = room.getPosX() + room.getWidth()/2 - doorwayWidth/2;
+                yPos = room.getPosY();
+                if (!room.isAdjacentTo(room.getNorth(), direction)) {
+                    g.setColor(Color.cyan);
+                }
                 g.fillRect(
-                        room.getPosX() + room.getWidth()/2 -doorwayWidth/2,
-                        room.getPosY(),
+                        xPos,
+                        yPos,
                         doorwayWidth,
                         wallWidth
                 );
+                if (room.getNorth().getSouth() != room) {
+                    paintPortalDirection(g, room, true, xPos, yPos, direction);
+                }
+                g.setColor(tempColor);
             }
             if (room.getSouth() != null) {
+                direction = 's';
+                xPos = room.getPosX() + room.getWidth()/2 - doorwayWidth/2;
+                yPos = room.getPosY() + room.getHeight() - wallWidth;
+                if (!room.isAdjacentTo(room.getSouth(), direction)) {
+                    g.setColor(Color.cyan);
+                }
                 g.fillRect(
-                        room.getPosX() + room.getWidth()/2 - doorwayWidth/2,
-                        room.getPosY() + room.getHeight() - wallWidth,
+                        xPos,
+                        yPos,
                         doorwayWidth,
                         wallWidth
                 );
+                if (room.getSouth().getNorth() != room) {
+                    paintPortalDirection(g, room, true, xPos, yPos, direction);
+                }
+                g.setColor(tempColor);
             }
             if (room.getWest() != null) {
+                direction = 'w';
+                xPos = room.getPosX();
+                yPos = room.getPosY() + room.getHeight()/2 - doorwayWidth/2;
+
+                if(!room.isAdjacentTo(room.getWest(), direction)) {
+                    g.setColor(Color.cyan);
+                }
                 g.fillRect(
-                        room.getPosX(),
-                        room.getPosY() + room.getHeight()/2 - doorwayWidth/2,
+                        xPos,
+                        yPos,
                         wallWidth,
                         doorwayWidth
                 );
+                if (room.getWest().getEast() != room) {
+                    paintPortalDirection(g, room, true, xPos, yPos, direction);
+                }
+                g.setColor(tempColor);
             }
             if (room.getEast() != null) {
+                direction = 'e';
+                xPos = room.getPosX() + room.getWidth() - wallWidth;
+                yPos = room.getPosY() + room.getHeight()/2 - doorwayWidth/2;
+                if (!room.isAdjacentTo(room.getEast(), direction)) {
+                    g.setColor(Color.cyan);
+                }
                 g.fillRect(
-                        room.getPosX() + room.getWidth() - wallWidth,
-                        room.getPosY() + room.getHeight()/2 - doorwayWidth/2,
+                        xPos,
+                        yPos,
                         wallWidth,
                         doorwayWidth
                 );
+                if (room.getEast().getWest() != room) {
+                    paintPortalDirection(g, room, true, xPos, yPos, direction);
+                }
+                g.setColor(tempColor);
             }
+        }
+
+        private void paintPortalDirection(Graphics g, Room room, boolean outgoing, int xPos, int yPos, char direction) {
+            int doorwayWidth = fp.getDoorwaySize();
+            int wallWidth = fp.getWallWidth();
+            int[] xArr;
+            int[] yArr;
+
+            switch(direction) {
+                case 'n':
+                    xArr = new int[]{xPos, xPos + doorwayWidth/2, xPos + doorwayWidth};
+                    if (outgoing) {
+                        yArr = new int[]{yPos, yPos - wallWidth, yPos};
+                    } else {
+                        yArr = new int[]{yPos - wallWidth, yPos, yPos - wallWidth};
+                    }
+                    break;
+                case 's':
+                    xArr = new int[]{xPos, xPos + doorwayWidth/2, xPos + doorwayWidth};
+                    if (outgoing) {
+                        yArr = new int[]{yPos, yPos + wallWidth, yPos};
+                    } else {
+                        yArr = new int[]{yPos, yPos + wallWidth, yPos};
+                    }
+                    break;
+                case 'w':
+                    yArr = new int[]{yPos, yPos + doorwayWidth/2, yPos + doorwayWidth};
+                    if (outgoing) {
+                        xArr = new int[]{xPos + wallWidth, xPos, xPos + wallWidth};
+                    } else {
+                        xArr = new int[]{xPos, xPos + wallWidth, xPos};
+                    }
+                    break;
+                case 'e':
+                    yArr = new int[]{yPos, yPos + doorwayWidth/2, yPos + doorwayWidth};
+                    if (outgoing) {
+                        xArr = new int[]{xPos, xPos + wallWidth, xPos};
+                    } else {
+                        xArr = new int[]{xPos + wallWidth, xPos, xPos + wallWidth};
+                    }
+                    break;
+                default:
+                    System.out.println("\'" + direction + "\' not a direction.");
+                    return;
+            }
+            g.setColor(g.getColor().darker());
+            g.fillPolygon(xArr, yArr, 3);
         }
 
         /**

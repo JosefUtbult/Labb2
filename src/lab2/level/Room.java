@@ -39,6 +39,8 @@ public class Room {
         this.color = color;
     }
 
+    Room() {}
+
     /**
      * Checks that this Room doesn't intersect with another.
      *
@@ -63,6 +65,26 @@ public class Room {
             return false;
         } else {
             return true;
+        }
+    }
+
+    public boolean isAdjacentTo(Room other, char direction) {
+        switch(direction) {
+            case 'n':
+                return this.posX + this.width / 2 == other.posX + other.width / 2
+                        && this.posY == other.posY + other.height + 1;
+            case 's':
+                return this.posX + this.width / 2 == other.posX + other.width / 2
+                        && this.posY + this.height == other.posY - 1;
+            case 'w':
+                return this.posX == other.posX + other.width + 1
+                        && this.posY + this.height / 2 == other.posY + other.height / 2;
+            case 'e':
+                return this.posX + this.width == other.posX - 1
+                        && this.posY + this.height / 2 == other.posY + other.height / 2;
+            default:
+                System.out.println("Direction \'" + direction + "\' not recognized.");
+                return false;
         }
     }
 
@@ -92,9 +114,9 @@ public class Room {
     public void connectSouthTo(Room r) {
         south = r;
 
-        if(r.getNorth() != this){
-            r.connectNorthTo(this);
-        }
+        //if(r.getNorth() != this){
+        //    r.connectNorthTo(this);
+        //}
     }
     /**
      * @param r Room Room to set west of this.
