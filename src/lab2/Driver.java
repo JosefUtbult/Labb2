@@ -31,7 +31,6 @@ public class Driver {
         */
         Level level = new Level();
         level.getRooms().add(new Room(1500, 100, Color.ORANGE));
-        level.firstLocation(level.getRooms().get(0));
 
         levelGUI = new LevelGUI(level, "Killing floor");
         levelGUI.getLv().setDoorwaySize(60);
@@ -39,7 +38,10 @@ public class Driver {
         levelGUI.getLv().addObserver(levelGUI);
 
         addRooms(levelGUI);
-        //levelGUI.getLv().firstLocation(levelGUI.getLv().getRooms().get(0));
+        levelGUI.getLv().firstLocation(levelGUI.getLv().getRooms().get(0));
+
+        levelGUI.getLv().place(new Room(60, 60, Color.ORANGE), 800, 1);
+
         levelGUI.getLv().update();
 
         System.out.println("Connected rooms");

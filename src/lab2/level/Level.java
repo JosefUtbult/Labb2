@@ -30,7 +30,7 @@ public class Level extends Observable {
      *          room, false otherwise.
      */
     public boolean place(Room r, int x, int y)  {
-        if (!doorwaySizeOk(r)) {
+        if (!doorwaySizeOk(r) || currentRoom != null) {
             return false;
         }
         r.setPos(x, y);
@@ -73,7 +73,6 @@ public class Level extends Observable {
      * @return
      */
     public boolean place(Room room, Room connectedRoom, char direction){
-
 
 		switch (direction) {
 			case 'n':
@@ -151,14 +150,6 @@ public class Level extends Observable {
      */
     public ArrayList<Room> getRooms() {
         return rooms;
-    }
-
-    /**
-     * "observer" are an array of observer objects, that contains every object that have to be updated
-     * every time something changes, that has to be rendered.s
-     * @param observer
-     */
-    public void addObserver(Observable observer){
     }
 
 

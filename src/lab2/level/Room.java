@@ -39,8 +39,6 @@ public class Room {
         this.color = color;
     }
 
-    Room() {}
-
     /**
      * Checks that this Room doesn't intersect with another.
      *
@@ -68,6 +66,12 @@ public class Room {
         }
     }
 
+    /**
+     * Checks if this is adjacent to other Room.
+     * @param other ROom
+     * @param direction char The direction of the other room from this.
+     * @return
+     */
     public boolean isAdjacentTo(Room other, char direction) {
         switch(direction) {
             case 'n':
@@ -88,6 +92,11 @@ public class Room {
         }
     }
 
+    /**
+     * Sets a one-way connection to another room.
+     * @param other
+     * @param direction
+     */
     public void setOneWayPortal(Room other, char direction) {
         switch (direction) {
             case 'n':
